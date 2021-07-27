@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://hMotko:4n2utp@cluster0.ovwil.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://hMotko:4n2utp@mernstack.ovwil.mongodb.net/mySocialNetwork?retryWrites=true&w=majority",
     "jwtSecret": "hunter.motko.939158"
 }
