@@ -8,7 +8,7 @@ const initialState = {
   error: {}
 }
 
-export default function(state = initialState, action){
+function profileReducer(state = initialState, action){
   const {type, payload} = action
 
   switch (type) {
@@ -21,7 +21,8 @@ export default function(state = initialState, action){
     case PROFILE_ERROR:
       return {
         ...state,
-        profile: payload,
+        error: payload,
+        profile: null,
         loading: false
       }
       case CLEAR_PROFILE:
@@ -29,9 +30,10 @@ export default function(state = initialState, action){
           ...state,
           profile: null,
           repos:[],
-          loading: null
+          loading: false
         }
     default:
       return state
   }
 }
+export default profileReducer
