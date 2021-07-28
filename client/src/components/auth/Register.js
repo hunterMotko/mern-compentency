@@ -15,7 +15,7 @@ const Register = () => {
         })
     }
 
-    const onSubmit=e=>{
+    const onSubmit = async e =>{
         e.preventDefault()
         if(password!==password2){
             console.log('Passwords do not match')
@@ -23,10 +23,10 @@ const Register = () => {
             console.log(formData)
         }
     }
-    
+
     return (
     <>
-        <h1 className="large text-primary">Sign Up</h1>
+        <h1 className="large text-primary">Sign In</h1>
         <p className="lead">
             <i className="fas fa-user"></i> Create Your Account
         </p>
