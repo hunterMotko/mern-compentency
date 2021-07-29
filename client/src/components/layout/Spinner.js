@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-
+import spinner from './spinner.gif'
 const Spinner = ()=> 
   <Fragment>
-    <i className="fas fa-spin"></i>
+    <img src={spinner} width='200px' alt='Loading'/>
   </Fragment>
 
 export default Spinner

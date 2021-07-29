@@ -22,16 +22,15 @@ function profileReducer(state = initialState, action){
       return {
         ...state,
         error: payload,
-        profile: null,
-        loading: false
+        loading: false,
+        profile: null
       }
-      case CLEAR_PROFILE:
-        return {
-          ...state,
-          profile: null,
-          repos:[],
-          loading: false
-        }
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        repos:[]
+      }
     default:
       return state
   }

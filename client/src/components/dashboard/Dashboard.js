@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../layout/Spinner'
 import { getCurrentProfile } from '../../actions/profile'
+import DashboardActions from './DashboardActions'
 // import { loadUser } from '../../actions/auth'
 
 const Dashboard = ({
@@ -25,7 +26,7 @@ const Dashboard = ({
       </p>
       { profile!==null ? (
         <Fragment>
-          has
+          <DashboardActions/>
         </Fragment>
           ):(
             <Fragment>
