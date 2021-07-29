@@ -38,7 +38,7 @@ const CreateProfile = ({ createProfile, history }) => {
     instagram
   }=formData
 
-  const onChange = e =>{
+  const onChange = (e) =>{
     const {name, value} = e.target
     setFormData({
       ...formData,
@@ -110,7 +110,8 @@ const CreateProfile = ({ createProfile, history }) => {
             type="text"
             placeholder="Github Username"
             name="githubusername"
-            value={githubusername} onChange={onChange}
+            value={githubusername} 
+            onChange={onChange}
           />
           <small className="form-text"
             >If you want your latest repos and a Github link, include your
@@ -118,7 +119,11 @@ const CreateProfile = ({ createProfile, history }) => {
           >
         </div>
         <div className="form-group">
-          <textarea placeholder="A short bio of yourself" name="bio" value={bio} onChange={onChange}></textarea>
+          <textarea placeholder="A short bio of yourself" 
+            name="bio" 
+            value={bio} 
+            onChange={onChange}
+          ></textarea>
           <small className="form-text">Tell us a little about yourself</small>
         </div>
 
@@ -133,17 +138,34 @@ const CreateProfile = ({ createProfile, history }) => {
           <Fragment>
             <div className="form-group social-input">
               <i className="fab fa-twitter fa-2x"></i>
-              <input type="text" placeholder="Twitter URL" name="twitter" value={twitter} onChange={onChange}/>
+              <input 
+                type="text" 
+                placeholder="Twitter URL" 
+                name="twitter" 
+                value={twitter} 
+                onChange={onChange}/>
             </div>
 
             <div className="form-group social-input">
               <i className="fab fa-facebook fa-2x"></i>
-              <input type="text" placeholder="Facebook URL" name="facebook" value={facebook} onChange={onChange}/>
+              <input 
+                type="text" 
+                placeholder="Facebook URL" 
+                name="facebook" 
+                value={facebook} 
+                onChange={onChange}
+              />
             </div>
 
             <div className="form-group social-input">
               <i className="fab fa-youtube fa-2x"></i>
-              <input type="text" placeholder="YouTube URL" name="youtube" value={youtube} onChange={onChange}/>
+              <input 
+                type="text" 
+                placeholder="YouTube URL" 
+                name="youtube" 
+                value={youtube} 
+                onChange={onChange}
+              />
             </div>
 
             <div className="form-group social-input">
@@ -168,4 +190,6 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 }
 
-export default connect(null, {createProfile})(withRouter(CreateProfile))
+export default connect( 
+  null, { createProfile }
+)(withRouter(CreateProfile))

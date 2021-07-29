@@ -45,7 +45,7 @@ const EditProfile = ({
     youtube: loading || !profile.social ? '' : profile.social.youtube,
     instagram: loading || !profile.social ? '' : profile.social.instagram
     })
-  },[loading])
+  },[loading,profile])
 
   const {
     company,
@@ -75,10 +75,8 @@ const EditProfile = ({
     createProfile(formData, history, true)
   }
 
-  // <Link to='#!'/>
   return (
   <Fragment>
-
     <h1 className="large text-primary">
         Create Your Profile
       </h1>
@@ -119,7 +117,7 @@ const EditProfile = ({
         <div className="form-group">
           <input type="text" placeholder="Location" name="location" value={location} onChange={onChange}/>
           <small className="form-text">
-            City & state suggested (eg. Boston, MA)
+            City and state suggested (eg. Boston, MA)
             </small
           >
         </div>
@@ -135,7 +133,8 @@ const EditProfile = ({
             type="text"
             placeholder="Github Username"
             name="githubusername"
-            value={githubusername} onChange={onChange}
+            value={githubusername}
+            onChange={onChange}
           />
           <small className="form-text"
             >If you want your latest repos and a Github link, include your
@@ -143,7 +142,11 @@ const EditProfile = ({
           >
         </div>
         <div className="form-group">
-          <textarea placeholder="A short bio of yourself" name="bio" value={bio} onChange={onChange}></textarea>
+          <textarea 
+          placeholder="A short bio of yourself" 
+          name="bio" value={bio} 
+          onChange={onChange}
+          ></textarea>
           <small className="form-text">Tell us a little about yourself</small>
         </div>
 
