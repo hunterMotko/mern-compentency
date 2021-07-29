@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import Spinner from '../layout/Spinner'
 import { getCurrentProfile } from '../../actions/profile'
 import DashboardActions from './DashboardActions'
+import Experience from './Experience'
+import Education from './Education'
 // import { loadUser } from '../../actions/auth'
 
 const Dashboard = ({
@@ -16,7 +18,9 @@ const Dashboard = ({
     getCurrentProfile()
   },[])
   console.log(profile)
-  return loading && profile === null ? <Spinner/> : 
+  return loading && profile === null ? (
+    <Spinner/> 
+  ) : (
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
@@ -24,21 +28,24 @@ const Dashboard = ({
         {' '}
         Welcome {user &&user.name}
       </p>
-      { profile!==null ? (
+      { profile !== null ? (
         <Fragment>
-          <DashboardActions/>
-        </Fragment>
-          ):(
-            <Fragment>
-              <p>You have not yet set up a profile, please ass some info.</p>
-              <Link to='/create-profile' className='btn btn-primary my-1'>
-                Create Profile
-              </Link>
+          <DashboardActions />
+          <Experience experience={profile.experience}/>
+          <Education education={profile.education}/>
 
-            </Fragment>
-          )
+        </Fragment>
+        ):(
+          <Fragment>
+            <p>You have not yet set up a profile, please ass some info.</p>
+            <Link to='/create-profile' className='btn btn-primary my-1'>
+              Create Profile
+            </Link>
+          </Fragment>
+        )
       }
     </Fragment>
+  )
 }
 
 Dashboard.propTypes = {
