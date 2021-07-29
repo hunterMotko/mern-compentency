@@ -33,19 +33,19 @@ const EditProfile = ({
 
     setFormData({
       company: loading || !profile.company ? '' : profile.company,
-    website: loading || !profile.website ? '' : profile.website,
-    location: loading || !profile.location ? '' : profile.location,
-    status: loading || !profile.status ? '' : profile.status,
-    skills: loading || !profile.skills ? '' : profile.skills.join(','),
-    githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
-    bio: loading || !profile.bio ? '' : profile.bio,
-    twitter: loading || !profile.social ? '' : profile.social.twitter,
-    facebook: loading || !profile.social ? '' : profile.social.facebook,
-    linkedin: loading || !profile.social ? '' : profile.social.linkedin,
-    youtube: loading || !profile.social ? '' : profile.social.youtube,
-    instagram: loading || !profile.social ? '' : profile.social.instagram
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.status,
+      skills: loading || !profile.skills ? '' : profile.skills.join(', '),
+      githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      instagram: loading || !profile.social ? '' : profile.social.instagram
     })
-  },[loading,profile])
+  },[loading])
 
   const {
     company,
@@ -103,13 +103,21 @@ const EditProfile = ({
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Company" name="company" value={company} onChange={onChange}/>
+          <input 
+            type="text" 
+            placeholder="Company" 
+            name="company" 
+            value={company} 
+            onChange={onChange}
+            />
           <small className="form-text"
             >Could be your own company or one you work for</small
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Website" name="website" value={website} onChange={onChange}/>
+          <input 
+            type="text" 
+            placeholder="Website" name="website" value={website} onChange={onChange}/>
           <small className="form-text"
             >Could be your own or a company website</small
           >
@@ -157,7 +165,8 @@ const EditProfile = ({
           <span>Optional</span>
         </div>
         
-        {displaySocialInputs && 
+        {displaySocialInputs && (
+
           <Fragment>
             <div className="form-group social-input">
               <i className="fab fa-twitter fa-2x"></i>
@@ -184,6 +193,7 @@ const EditProfile = ({
               <input type="text" placeholder="Instagram URL" name="instagram" value={instagram} onChange={onChange}/>
             </div>
           </Fragment>
+        )
         }
         <input type="submit" className="btn btn-primary my-1" />
         <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>

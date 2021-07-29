@@ -6,7 +6,7 @@ const request = require('request')
 const config = require('config')
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
-
+const Post = require('../../models/Posts')
 // @route   GET api/profile/me
 // @desc    GET current users profile
 // @access  Private
@@ -17,6 +17,7 @@ router.get('/me', auth, async(req, res) => {
         if(!profile){
             return res.status(400).json({msg:'There is no profile for this user'})
         }
+
         res.json(profile)
     }catch(err){
         console.error(err.message)
@@ -51,8 +52,8 @@ router.post('/', [ auth, [
         linkedin
     }=req.body
     // Build profile obj
-    const profileFields ={}
-    profileFields.user=req.user.id
+    const profileFields = {}
+    profileFields.user = req.user.id
     if(company)profileFields.company=company
     if(website)profileFields.website=website
     if(location)profileFields.location=location
@@ -72,7 +73,7 @@ router.post('/', [ auth, [
 
 
     try{
-        let profile = await Profile.findOne({user:req.user.id})
+        let profile = await Profile.findOne({ user: req.user.id })
         if(profile){
             // update
             profile = await Profile.findOneAndUpdate(
@@ -84,7 +85,9 @@ router.post('/', [ auth, [
         }
         // create
         profile = new Profile(profileFields)
+
         await profile.save()
+        
         res.json(profile)
     }catch(err){
         console.error(err.message)
@@ -132,11 +135,13 @@ router.get('/user/:user_id', async(req, res)=>{
 // @access  Private
 router.delete('/', auth,async(req, res)=>{
     try {
-        //@todo - remove users posts
-
+        //remove users posts
+        await Post.deleteMany({user: req.user.id})
         // Remove profile
         await Profile.findOneAndRemove({user:req.user.id})
+        // Remove user
         await User.findOneAndRemove({_id:req.user.id})
+
         res.json({msg:'User Deleted'})
     } catch (err) {
         console.error(err.message)
