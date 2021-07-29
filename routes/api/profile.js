@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../../middleware/auth')
-const {check, validationResult} = require('express-validator/check')
+const {check, validationResult} = require('express-validator')
 const request = require('request')
 const config = require('config')
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
 const Post = require('../../models/Posts')
+
 // @route   GET api/profile/me
 // @desc    GET current users profile
 // @access  Private
@@ -73,22 +74,13 @@ router.post('/', [ auth, [
 
 
     try{
-        let profile = await Profile.findOne({ user: req.user.id })
-        if(profile){
-            // update
-            profile = await Profile.findOneAndUpdate(
-                {user:res.user.id},
-                {$set:profileFields},
-                {new:true}
-            )
-            return res.json(profile)
-        }
-        // create
-        profile = new Profile(profileFields)
-
-        await profile.save()
+        let profile = await Profile.findOneAndUpdate(
+            { user: res.user.id },
+            { $set: profileFields },
+            {new:true, upsert:true, setDefaultsOnInsert:true}
+        )
         
-        res.json(profile)
+        return res.json(profile)
     }catch(err){
         console.error(err.message)
         res.status(500).send('Server Error')

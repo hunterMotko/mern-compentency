@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const { check, validationResult } = require('express-validator/check')
+const { check, validationResult } = require('express-validator')
 const config = require('config')
 const User = require('../../models/User')
 const gravatar = require('gravatar')
@@ -58,15 +58,10 @@ router.post('/', [
                 res.json({ token })
             }
         )
-
     } catch (err) {
         console.error(err.message)
         res.status.send('Server Error')
     }
-
-
-
-
 })
 
 module.exports = router
