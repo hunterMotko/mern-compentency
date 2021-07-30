@@ -23,11 +23,10 @@ router.get('/', auth, async (req, res) => {
 // @route   POST api/auth
 // @desc    Authenticate user & get toekn
 // @access  Public
-router.post('/', [
-
-    check('email', 'Please include valid email').isEmail(),
-    check('password', 'Password is required').exists()
-], async (req, res) => {
+router.post('/', 
+ check('email', 'Please include valid email').isEmail(),
+ check('password', 'Password is required').exists(),
+ async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
@@ -60,7 +59,7 @@ router.post('/', [
         jwt.sign(
             payload,
             config.get('jwtSecret'),
-            { expiresIn: 360000 },
+            { expiresIn: '5 days' },
             (err, token) => {
                 if (err) throw err
                 res.json({ token })

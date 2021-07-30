@@ -51,7 +51,6 @@ const CreateProfile = ({ createProfile, history }) => {
     createProfile(formData, history)
   }
 
-  // <Link to='#!'/>
   return (
   <Fragment>
 
@@ -77,33 +76,28 @@ const CreateProfile = ({ createProfile, history }) => {
             <option value="Other">Other</option>
           </select>
           <small className="form-text"
-            >Give us an idea of where you are at in your career</small
-          >
+            >Give us an idea of where you are at in your career</small>
         </div>
         <div className="form-group">
           <input type="text" placeholder="Company" name="company" value={company} onChange={onChange}/>
           <small className="form-text"
-            >Could be your own company or one you work for</small
-          >
+            >Could be your own company or one you work for</small>
         </div>
         <div className="form-group">
           <input type="text" placeholder="Website" name="website" value={website} onChange={onChange}/>
           <small className="form-text"
-            >Could be your own or a company website</small
-          >
+            >Could be your own or a company website</small>
         </div>
         <div className="form-group">
           <input type="text" placeholder="Location" name="location" value={location} onChange={onChange}/>
           <small className="form-text"
-            >City & state suggested (eg. Boston, MA)</small
-          >
+            >City & state suggested (eg. Boston, MA)</small>
         </div>
         <div className="form-group">
           <input type="text" placeholder="* Skills" name="skills" value={skills} onChange={onChange}/>
           <small className="form-text"
             >Please use comma separated values (eg.
-            HTML,CSS,JavaScript,PHP)</small
-          >
+            HTML,CSS,JavaScript,PHP)</small >
         </div>
         <div className="form-group">
           <input
@@ -115,8 +109,7 @@ const CreateProfile = ({ createProfile, history }) => {
           />
           <small className="form-text"
             >If you want your latest repos and a Github link, include your
-            username</small
-          >
+            username</small>
         </div>
         <div className="form-group">
           <textarea placeholder="A short bio of yourself" 
@@ -190,6 +183,10 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 }
 
+const mapStateToProps = state =>({
+  profile: state.profile
+})
+
 export default connect( 
-  null, { createProfile }
+  mapStateToProps, { createProfile }
 )(withRouter(CreateProfile))

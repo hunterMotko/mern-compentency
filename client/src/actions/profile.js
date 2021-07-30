@@ -21,6 +21,7 @@ export const getCurrentProfile=()=> async dispatch =>{
       payload: res.data
     })
   } catch (err) {
+    dispatch({type: CLEAR_PROFILE})
     dispatch({
       type: PROFILE_ERROR,
       payload: {
@@ -100,9 +101,9 @@ export const createProfile = (formData, history, edit = false)=> async (dispatch
         'Content-Type':'application/json'
       }
     }
-    console.log(await axios.post('/api/profile', formData, config))
+    
     const res = await axios.post('/api/profile', formData, config)
-
+    
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -113,6 +114,8 @@ export const createProfile = (formData, history, edit = false)=> async (dispatch
     if(!edit){
       history.push('/dashboard')
     }
+
+    
   } catch (err) {
     const errors = err.response.data.errors
 

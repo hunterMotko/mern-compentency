@@ -29,10 +29,13 @@ router.get('/me', auth, async(req, res) => {
 // @route   POST api/profile
 // @desc    Create or update a user profile
 // @access  Private
-router.post('/', [ auth, [
-    check('status', 'Status is required').not().isEmpty(),
-    check('skills', 'Skills is required').not().isEmpty()
-]], async(req,res)=>{
+router.post('/',  [auth, 
+    [
+        check('status', 'Status is required').not().isEmpty(),
+        check('skills', 'Skills is required').not().isEmpty()
+    ]
+],
+    async(req,res)=>{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()})
@@ -51,7 +54,8 @@ router.post('/', [ auth, [
         twitter,
         instagram,
         linkedin
-    }=req.body
+    }= req.body
+
     // Build profile obj
     const profileFields = {}
     profileFields.user = req.user.id
@@ -74,10 +78,11 @@ router.post('/', [ auth, [
 
 
     try{
+        
         let profile = await Profile.findOneAndUpdate(
             { user: res.user.id },
             { $set: profileFields },
-            {new:true, upsert:true, setDefaultsOnInsert:true}
+            { new:true, upsert: true, setDefaultsOnInsert: true}
         )
         
         return res.json(profile)

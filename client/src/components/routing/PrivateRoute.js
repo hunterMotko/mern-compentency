@@ -5,13 +5,13 @@ import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({
     component: Component, 
-    auth:{isAuthenticated,loading}, 
-    ...rest}
-  ) => 
+    auth: { isAuthenticated, loading }, 
+    ...rest
+  }) => 
     (<Route 
       {...rest} 
       render={props=>
-        !isAuthenticated&&!loading ? (
+        !isAuthenticated && !loading ? (
         <Redirect to='/login'/>
         ) : (
           <Component {...props}/>
@@ -20,7 +20,7 @@ const PrivateRoute = ({
     )
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state =>({
