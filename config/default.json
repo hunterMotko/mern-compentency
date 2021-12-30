@@ -1,6 +1,6 @@
 {
     "mongoURI": "mongodb+srv://hMotko:4n2utp@mernstack.ovwil.mongodb.net/mySocialNetwork?retryWrites=true&w=majority",
     "jwtSecret": "hunter.motko.939158",
-    "githubClientId":"ea2ac660e79b02d8cae0",
-    "githubSecret":"d2772a6559d4fe2ba0157d8d815098055f26776b"
+    "githubClientId":"...",
+    "githubSecret":"..."
 }
