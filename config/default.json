@@ -1,6 +1,6 @@
 {
-    "mongoURI": "mongodb+srv://hMotko:4n2utp@mernstack.ovwil.mongodb.net/mySocialNetwork?retryWrites=true&w=majority",
-    "jwtSecret": "hunter.motko.939158",
+    "mongoURI": ".env file needed",
+    "jwtSecret": "...",
     "githubClientId":"...",
     "githubSecret":"..."
 }
